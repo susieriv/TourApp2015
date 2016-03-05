@@ -29,7 +29,7 @@ public class MapFragment extends FragmentBase {
 
 	@SuppressWarnings("unused")
 	private static final String LOG_TAG = MapFragment.class.getName();
-	private static final int DEFAULT_ZOOM = 16;
+	private static final int DEFAULT_ZOOM = 10;
 	
 	/* --- Fields --- */
 	
@@ -68,11 +68,13 @@ public class MapFragment extends FragmentBase {
 	 * Gets the coordinate object as as string for snippet presentation
 	 * @return The coordinate object as as string for snippet presentation
 	 */
-	public String getCoordinateAsSnippetContent() {
+	public String getCoordinateAsSnippetContent(LatLng latLng) {
 		String result = null;
-		
-		// TODO [2014-04-02, JMEL] Implement getCoordinateAsSnippetContent
-		
+		/* 04/03/2016 - Ajout Susie : Coordonnees en texte */
+		Double l1=latLng.latitude;
+		Double l2=latLng.longitude;
+		result = "Coord: " + l1.toString() + " ; " + l2.toString();
+
 		return result;
 	}
 	
@@ -150,7 +152,7 @@ public class MapFragment extends FragmentBase {
 		map.addMarker(new MarkerOptions()
 			.position(latLng)
 			.title(this.getTourItem().getName())
-			.snippet(this.getCoordinateAsSnippetContent())
+			.snippet(this.getCoordinateAsSnippetContent(latLng))
 		);
 		
 		return this.view;
