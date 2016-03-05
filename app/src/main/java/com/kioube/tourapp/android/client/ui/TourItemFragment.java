@@ -274,8 +274,8 @@ public class TourItemFragment extends FragmentBase {
 	
 	public void callPhone() {
 		Intent intent = new Intent(Intent.ACTION_CALL);
-
-		intent.setData(Uri.parse("tel:" + this.getCoordinate().getPhone()));
+		String numberPhone = "tel:" + String.format("%010.0f",this.getCoordinate().getPhone());
+		intent.setData(Uri.parse(numberPhone));
 		this.startActivity(intent);
 	}
 }

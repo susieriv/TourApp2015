@@ -29,7 +29,7 @@
     <string name="navigation_catalog">Catalogue</string>
     <string name="navigation_advanced_search">Recherche avancée</string>
     <string name="navigation_take_me_a_tour">Take me a tour</string>
-    <string name="navigation_messenger">Message</string>
+    <string name="navigation_messenger">Messagerie</string>
     <string name="navigation_settings">Paramètres</string>
     <string name="navigation_synchronize">Synchroniser</string>
     <string name="no_network">Pas de connexion réseau</string>
