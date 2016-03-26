@@ -3,6 +3,8 @@ package com.kioube.tourapp.android.client.persistence.repository;
 import java.sql.SQLException;
 import java.util.List;
 
+import java.text.Normalizer;
+
 import android.content.Context;
 import android.util.Log;
 
@@ -159,17 +161,28 @@ public class TourItemRepository extends RepositoryBase<TourItem> {
 	
 	public List<TourItem> getByFilter(GeographicalArea geographicalArea, Theme theme, String keyword) {
 		List<TourItem> result = null;
-
-		try {			
+		String keywordnaked = Normalizer.normalize(keyword, Normalizer.Form.NFD).replaceAll("[\u0300-\u036F]", "");
+        try {
 			PreparedQuery<TourItem> query = this.getDao().queryBuilder()
 				.where()
 				.eq(TourItem.GEOGRAPHICAL_AREA_ID_FIELD_NAME, geographicalArea.getId())
-				.and()
 				.eq(TourItem.THEME_ID_FIELD_NAME, theme.getId())
-				.and()
+				.and(2)
 				.like(TourItem.NAME_FIELD_NAME, "%" + keyword + "%")
+                .or()
+                .like(TourItem.NAME_FIELD_NAME, "%" + keywordnaked + "%")
+                .and(2)
 				.prepare();
-			
+
+            /* PreparedQuery<TourItem> query = this.getDao().queryBuilder()
+                    .where()
+                    .eq(TourItem.GEOGRAPHICAL_AREA_ID_FIELD_NAME, geographicalArea.getId())
+                    .and()
+                    .eq(TourItem.THEME_ID_FIELD_NAME, theme.getId())
+                    .and()
+                    .like(TourItem.NAME_FIELD_NAME, "%" + keyword + "%")
+                    .prepare(); */
+
 			result = this.getDao().query(query);
 		}
 		catch (SQLException e) {

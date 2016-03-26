@@ -1,5 +1,6 @@
 package com.kioube.tourapp.android.client.domain;
 
+import java.text.Normalizer;
 import java.util.Collection;
 import java.util.Date;
 
@@ -34,7 +35,6 @@ public class TourItem extends SynchronizableEntityBase {
 	public final static String GEOGRAPHICAL_AREA_ID_FIELD_NAME = "geographicalAreaId";
 	public final static String THEME_ID_FIELD_NAME = "themeId";
 	public final static String NAME_FIELD_NAME = "Name";
-	
 	/* --- Fields --- */
 	
 	@Attribute
@@ -53,7 +53,7 @@ public class TourItem extends SynchronizableEntityBase {
 	@DatabaseField(columnName = NAME_FIELD_NAME)
 	private String name;
 
-	@Element(required = false)
+		@Element(required = false)
 	@DatabaseField
 	private String description;
 
@@ -140,24 +140,14 @@ public class TourItem extends SynchronizableEntityBase {
 	public void setTheme(Theme theme) {
 		this.theme = theme;
 	}
-	
-	/**
-	 * Gets the TourItem object's name value
-	 * 
-	 * @return The TourItem object's name value
-	 */
-	public String getName() {
-		return this.name;
-	}
+	public String getName() { return this.name;}
 	
 	/**
 	 * Sets the TourItem object's name value
 	 * 
 	 * @param name The TourItem object's name value to set
 	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+	public void setName(String name) {	this.name = name;}
 	
 	/**
 	 * Gets the TourItem object's description value
@@ -249,7 +239,7 @@ public class TourItem extends SynchronizableEntityBase {
 	 */
 	public TourItem(int id, GeographicalArea geographicalArea, Theme theme, String name, String description, String summary, Collection<TourItemImage> imageList, Date createdOn, Date updatedOn, Date deletedOn) {
 		super(createdOn, updatedOn, deletedOn);
-		
+
 		this.id = id;
 		this.geographicalArea = geographicalArea;
 		this.theme = theme;
