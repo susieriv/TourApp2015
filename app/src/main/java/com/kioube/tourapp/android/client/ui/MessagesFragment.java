@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -91,14 +92,24 @@ public class MessagesFragment extends FragmentBase {
 		
 		// Sets fragment title
 		this.getMainActivity().setViewTitle(
-			this.getResources().getString(R.string.messages)
+				this.getResources().getString(R.string.messages)
 		);
 		
 		// Loads messages
 		this.loadMessages();
-		
+
+		/*this.messageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				//MessagesFragment.this.onMessagesFragmentItemClick(position);
+			}
+		});*/
+
 		return view;
 	}
+
+
+
 
 	/**
 	 * Loads and render messages
