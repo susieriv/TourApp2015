@@ -12,6 +12,7 @@ import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.kioube.tourapp.android.client.domain.Configuration;
+import com.kioube.tourapp.android.client.domain.ContactAdmin;
 import com.kioube.tourapp.android.client.domain.Coordinate;
 import com.kioube.tourapp.android.client.domain.GeographicalArea;
 import com.kioube.tourapp.android.client.domain.TourItemImage;
@@ -42,6 +43,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private Dao<Configuration, Integer> configurationDao = null;
 	private RuntimeExceptionDao<Configuration, Integer> configurationRuntimeDao = null;
 	
+	private Dao<ContactAdmin, Integer> contactadminDao = null;
+	private RuntimeExceptionDao<ContactAdmin, Integer> contactadminRuntimeDao = null;
+	
 	private Dao<Coordinate, Integer> coordinateDao = null;
 	private RuntimeExceptionDao<Coordinate, Integer> coordinateRuntimeDao = null;
 	
@@ -59,6 +63,31 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	
 	/* --- Getters & setters --- */
 	
+/**
+	 * Gets the DatabaseHelper object's contactadminDao value
+	 * 
+	 * @return The DatabaseHelper object's contactadminDao value
+	 * @throws java.sql.SQLException
+	 */
+	public Dao<ContactAdmin, Integer> getContactAdminDao() throws SQLException {
+		if (this.contactadminDao == null) {
+			this.contactadminDao = this.getDao(ContactAdmin.class);
+		}
+
+		return this.contactadminDao;
+	}
+/**
+	 * Gets the DatabaseHelper object's contactadminDataDao value
+	 * 
+	 * @return The DatabaseHelper object's contactadminDataDao value
+	 */
+	public RuntimeExceptionDao<ContactAdmin, Integer> getContactAdminDataDao() {
+		if (this.contactadminRuntimeDao == null) {
+			this.contactadminRuntimeDao = this.getRuntimeExceptionDao(ContactAdmin.class);
+		}
+		
+		return this.contactadminRuntimeDao;
+	}
 	/**
 	 * Gets the DatabaseHelper object's configurationDao value
 	 * 
@@ -241,6 +270,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		// Creates tables
 		try {
 			TableUtils.createTable(connectionSource, Configuration.class);
+			TableUtils.createTable(connectionSource, ContactAdmin.class);
 			TableUtils.createTable(connectionSource, GeographicalArea.class);
 			TableUtils.createTable(connectionSource, Theme.class);
 			TableUtils.createTable(connectionSource, TourItem.class);
@@ -271,6 +301,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		
 		this.configurationDao = null;
 		this.configurationRuntimeDao = null;
+
+		this.contactadminDao = null;
+		this.contactadminRuntimeDao = null;
 
 		this.coordinateDao = null;
 		this.coordinateRuntimeDao = null;

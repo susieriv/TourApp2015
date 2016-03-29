@@ -9,6 +9,7 @@ import org.simpleframework.xml.Root;
 
 import com.kioube.tourapp.android.client.domain.Configuration;
 import com.kioube.tourapp.android.client.domain.Coordinate;
+import com.kioube.tourapp.android.client.domain.ContactAdmin;
 import com.kioube.tourapp.android.client.domain.GeographicalArea;
 import com.kioube.tourapp.android.client.domain.Theme;
 import com.kioube.tourapp.android.client.domain.TourItem;
@@ -39,6 +40,9 @@ public class SynchronizationResponse {
 	
 	@ElementList(name = "ConfigurationList", type = Configuration.class, required = false)
 	private List<Configuration> configurationList;
+
+	@ElementList(name = "ContactAdminList", type = ContactAdmin.class, required = false)
+	private List<ContactAdmin> ContactAdminList;
 
     @ElementList(name = "UpdateDate", type = Date.class, required = false)
     private List<Configuration> updateDate;
@@ -133,6 +137,24 @@ public class SynchronizationResponse {
 	 */
 	public void setConfigurationList(List<Configuration> configurationList) {
 		this.configurationList = configurationList;
+	}
+
+	/**
+	 * Gets the SynchronizationResponse object's contactadminList value
+	 * 
+	 * @return The SynchronizationResponse object's contactadminList value
+	 */
+	public List<ContactAdmin> getContactAdminList() {
+		return this.ContactAdminList;
+	}
+	
+	/**
+	 * Sets the SynchronizationResponse object's contactadminList value
+	 * 
+	 * @param contactadminList The SynchronizationResponse object's contactadminList value to set
+	 */
+	public void setContactAdminList(List<ContactAdmin> contactadminList) {
+		this.ContactAdminList = contactadminList;
 	}
 	
 	/* --- Constructors --- */

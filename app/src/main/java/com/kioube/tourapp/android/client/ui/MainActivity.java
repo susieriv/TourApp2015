@@ -348,7 +348,7 @@ public class MainActivity extends Activity {
 		
 		// Updates the action bar background color
 		this.getActionBar().setBackgroundDrawable(new ColorDrawable(
-			this.configurationRepository.getActionBarBackgroundColor()
+				this.configurationRepository.getActionBarBackgroundColor()
 		));
 		
 		// Gets the action bar title and sets its color
@@ -462,7 +462,24 @@ public class MainActivity extends Activity {
 				}
 			}
 		));
-		
+
+		// ajout d'un menu de contact admin
+		this.navigationItemList.add(new NavigationDrawerItem(
+				this.getResources().getString(R.string.navigation_contactadmin),
+				R.drawable.ic_contact_admin,
+				new Runnable() {
+					@Override
+					public void run() {
+						// Checks internet connection
+						if (!internetConnectionHelper.isInternetConnectionAvailable()) {
+							MainActivity.this.showNoNetworkAlert();
+						}
+						else {
+							MainActivity.this.browseToContactAdmin();
+						}
+					}
+				}
+		));
 		// Adapts it to the navigation list view
 		this.getNavigationListView().setAdapter(
 			new NavigationDrawerItemAdapter(
@@ -595,6 +612,13 @@ public class MainActivity extends Activity {
 	 */
 	protected void browseToMessages() {
 		this.switchToFragment(new MessagesFragment());
+	}
+
+	/**
+	 * Browses to the contact admin
+	 */
+	protected void browseToContactAdmin() {
+		this.switchToFragment(new ContactAdminFragment());
 	}
 
 	/**

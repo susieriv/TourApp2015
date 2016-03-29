@@ -23,6 +23,7 @@ import android.util.Log;
 
 import com.kioube.tourapp.android.client.R;
 import com.kioube.tourapp.android.client.domain.Configuration;
+import com.kioube.tourapp.android.client.domain.ContactAdmin;
 import com.kioube.tourapp.android.client.domain.Coordinate;
 import com.kioube.tourapp.android.client.domain.GeographicalArea;
 import com.kioube.tourapp.android.client.domain.Theme;
@@ -30,6 +31,7 @@ import com.kioube.tourapp.android.client.domain.TourItem;
 import com.kioube.tourapp.android.client.domain.TourItemImage;
 import com.kioube.tourapp.android.client.helper.SessionManager;
 import com.kioube.tourapp.android.client.persistence.repository.ConfigurationRepository;
+import com.kioube.tourapp.android.client.persistence.repository.ContactAdminRepository;
 import com.kioube.tourapp.android.client.persistence.repository.CoordinateRepository;
 import com.kioube.tourapp.android.client.persistence.repository.GeographicalAreaRepository;
 import com.kioube.tourapp.android.client.persistence.repository.ThemeRepository;
@@ -51,7 +53,8 @@ public class SynchronizationService {
 	private Context context;
 	
 	private ServiceListener listener;
-	
+
+	private ContactAdminRepository contactadminRepository;
 	private ConfigurationRepository configurationRepository;
 	private CoordinateRepository coordinateRepository;
 	private GeographicalAreaRepository geographicalAreaRepository;
@@ -83,7 +86,20 @@ public class SynchronizationService {
 		
 		return this.configurationRepository;
 	}
-	
+
+	/**
+	 * Gets the SynchronizationService object's contactadminRepository value
+	 *
+	 * @return The SynchronizationService object's contactadminRepository value
+	 */
+	public ContactAdminRepository getContactAdminRepository() {
+		if (this.contactadminRepository == null) {
+			this.contactadminRepository = new ContactAdminRepository(this.context);
+		}
+
+		return this.contactadminRepository;
+	}
+
 	/**
 	 * Gets the SynchronizationService object's coordinateRepository value
 	 * 
@@ -320,6 +336,7 @@ public class SynchronizationService {
 						SynchronizationService.this.persistTourItemImageList(response.getTourItemList());
 						SynchronizationService.this.persistCoordinateList(response.getCoordinateList());
 						SynchronizationService.this.persistConfigurationList(response.getConfigurationList());
+						SynchronizationService.this.persistContactAdminList(response.getContactAdminList());
 					}
 					else {
 						throw new Exception("Service response is null using '" + urlString + "'.");
@@ -507,6 +524,42 @@ public class SynchronizationService {
 				// Else create it
 				else {
 					this.getConfigurationRepository().create(configuration);
+					
+				}
+			}
+		}
+	}
+
+	/**
+	 * Persists the imported contactadmin list by managing creation, update and deletion
+	 * 
+	 * @param contactadminList A list of persistent items to save
+	 */
+	private void persistContactAdminList(List<ContactAdmin> contactadminList) {
+		if (contactadminList != null) {
+			for (ContactAdmin contactadmin : contactadminList) {
+				// Deletion
+				/*if (contactadmin.getDeletedOn().after(new GregorianCalendar(1970, 1, 1).getTime()))
+				{
+					this.getContactAdminRepository().delete(contactadmin);
+				}
+
+				// Save
+				else {
+					this.getContactAdminRepository().createOrUpdate(contactadmin);
+				}*/
+				// Tries to get the contactadmin if exists
+				ContactAdmin previousContactAdmin = this.getContactAdminRepository().getByKey(contactadmin.getKey());
+				
+				// If exists, updates it
+				if (previousContactAdmin != null) {
+					previousContactAdmin.setValue(contactadmin.getValue());
+					this.getContactAdminRepository().update(previousContactAdmin);
+				}
+				
+				// Else create it
+				else {
+					this.getContactAdminRepository().create(contactadmin);
 					
 				}
 			}
