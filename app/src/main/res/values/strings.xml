@@ -23,6 +23,7 @@
     <string name="map">Map</string>
     <string name="menu">Menu</string>
     <string name="messages">Messages</string>
+    <string name="contact_admin">Contact admin</string>
     <string name="navigation">Navigation</string>
     <string name="navigation_home">Home</string>
     <string name="navigation_bookmarks">Bookmarks</string>
@@ -30,6 +31,7 @@
     <string name="navigation_advanced_search">Advanced search</string>
     <string name="navigation_take_me_a_tour">Take me a tour</string>
     <string name="navigation_messenger">Messenger</string>
+    <string name="navigation_contactadmin">Contact admin</string>
     <string name="navigation_settings">Settings</string>
     <string name="navigation_synchronize">Synchronize data</string>
     <string name="no_network">No network connection</string>
@@ -62,7 +64,10 @@
     
     <integer name="card_flip_time_full">500</integer>
     <integer name="card_flip_time_half">250</integer>
-    
+
+    <string name="contact_admin_titre">Here you can contact administrator.</string>
+    <string name="contact_admin_texte">Deux possibilités : soit par email, soit par téléphone ! Privilégiez le contact par e-mail car ledit administrateur est très occupé. Si vraiment un bug critique survient, laissez lui un message téléphonique. Autrement, ne seront traités que les demandes écrites.</string>
+
     <string name="lorem_ipsum">Lorem ipsum</string>
     <string name="lorem_ipsum_dolor_sit_amet">Lorem ipsum dolor sit amet</string>
     <string name="lorem_ipsum_paragraph">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</string>
