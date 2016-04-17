@@ -61,7 +61,11 @@
     <string name="morning">Morning</string>
     <string name="afternoon">Afternoon</string>
     <string name="night">Night</string>
-    
+    <string name="menu_authentification">Authentification</string>
+    <string name="app_id">"549751468531110"</string>
+    <string name="title_authentification">Authentification via Facebook</string>
+
+
     <integer name="card_flip_time_full">500</integer>
     <integer name="card_flip_time_half">250</integer>
 

@@ -4,6 +4,10 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
+    repositories {
+        mavenCentral()
+    }
+
     defaultConfig {
         applicationId "com.kioube.tourapp"
         minSdkVersion 16
@@ -44,4 +48,5 @@ dependencies {
         exclude module: 'xpp3'
     }
     compile 'com.j256.ormlite:ormlite-android:4.47'
+    compile 'com.facebook.android:facebook-android-sdk:4.0.0'
 }

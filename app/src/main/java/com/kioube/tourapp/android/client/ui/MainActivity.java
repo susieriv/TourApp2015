@@ -53,6 +53,8 @@ import com.kioube.tourapp.android.client.ui.filter.TourItemFilter;
 import com.kioube.tourapp.android.client.ui.filter.TourItemImageFilter;
 import com.kioube.tourapp.android.client.ui.filter.TourItemListFilter;
 
+import com.facebook.FacebookSdk;
+
 /**
  * 
  * MainActivity type definition
@@ -480,6 +482,27 @@ public class MainActivity extends Activity {
 					}
 				}
 		));
+
+
+		// ajout d'un menu d'authentification
+		this.navigationItemList.add(new NavigationDrawerItem(
+				this.getResources().getString(R.string.menu_authentification),
+				R.drawable.ic_facebook,
+				new Runnable() {
+					@Override
+					public void run() {
+						// Checks internet connection
+						if (!internetConnectionHelper.isInternetConnectionAvailable()) {
+							MainActivity.this.showNoNetworkAlert();
+						}
+						else {
+							MainActivity.this.browseToAuthentification();
+						}
+					}
+				}
+		));
+
+
 		// Adapts it to the navigation list view
 		this.getNavigationListView().setAdapter(
 			new NavigationDrawerItemAdapter(
@@ -619,6 +642,14 @@ public class MainActivity extends Activity {
 	 */
 	protected void browseToContactAdmin() {
 		this.switchToFragment(new ContactAdminFragment());
+	}
+
+
+	/**
+	 * Browses to the authentification
+	 */
+	protected void browseToAuthentification() {
+		this.switchToFragment(new AuthentificationFragment());
 	}
 
 	/**
