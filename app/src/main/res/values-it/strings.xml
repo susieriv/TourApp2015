@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyTraveler</string>
+    <string name="action_bookmark">Favoriti</string>
+    <string name="action_connection_mode">Modalità di connessione</string>
+    <string name="action_home">Casa</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="advanced_search">Impostazioni</string>
+    <string name="areas">Area geografica</string>
+    <string name="bookmarks">Favoriti</string>
+    <string name="call">Chiamata</string>
+    <string name="cancel">Annullare</string>
+    <string name="close_menu">Vicino</string>
+    <string name="coordinates">Contatto</string>
+    <string name="default_headline">Pays de la Loire</string>
+    <string name="email">Email</string>
+    <string name="gallery">galleria</string>
+    <string name="guest_account">Ospite conto</string>
+    <string name="is_no_longer_bookmarked">%s rimosso dai preferiti</string>
+    <string name="is_now_bookmarked">%s aggiunto ai preferiti</string>
+    <string name="loading">Caricamento&#8230;</string>
+    <string name="loading_application">Caricamento&#8230;</string>
+    <string name="map">Carta</string>
+    <string name="menu">Menu</string>
+    <string name="messages">Messaggi</string>
+    <string name="contact_admin">Contattare admin</string>
+    <string name="navigation">Navigazione</string>
+    <string name="navigation_home">Casa</string>
+    <string name="navigation_bookmarks">Favoriti</string>
+    <string name="navigation_catalog">Catalogo</string>
+    <string name="navigation_advanced_search">Ricerca avanzata</string>
+    <string name="navigation_take_me_a_tour">Take me a tour</string>
+    <string name="navigation_messenger">Messaggistica</string>
+    <string name="navigation_contactadmin">Contattare admin</string>
+    <string name="navigation_settings">Impostazioni</string>
+    <string name="navigation_synchronize">sincronizzare</string>
+    <string name="no_network">Nessuna connessione di rete</string>
+    <string name="no_network_details">Si prega di verificare la connessione a Internet e la modalità di connessione dell\'applicazione.</string>
+    <string name="no_result">Nessun risultato</string>
+    <string name="now_disconnected_modetext">Offline</string>
+    <string name="now_connected_modetext">Online</string>
+    <string name="not_implemented">Non implementato</string>
+    <string name="offline_mode">Offline</string>
+    <string name="online_mode">Online</string>
+    <string name="open_menu">aprire il menu</string>
+    <string name="poi_list">Punto di interesse</string>
+    <string name="quick_search">Ricerca rapida</string>
+    <string name="save">Salvare</string>
+    <string name="search">Ricerca</string>
+    <string name="select_geographical_area">selezionare un\'area</string>
+    <string name="select_theme">selezionare un tema</string>
+    <string name="settings">Impostazioni</string>
+    <string name="sync_alert">Desidera sincronizzare i dati ora ?</string>
+    <string name="sync_mode">modalità di sincronizzazione</string>
+    <string name="sync_mode_ask">Chiedi ogni volta</string>
+    <string name="sync_mode_auto">Automatico ( non chiedere )</string>
+    <string name="sync_mode_never">Sempre</string>
+    <string name="take_me_a_tour">Take me a tour</string>
+    <string name="themes">Temi</string>
+    <string name="visit_website">WWW</string>
+    <string name="morning">mattina</string>
+    <string name="afternoon">Pomeriggio</string>
+    <string name="night">Sera</string>
+    
+    <integer name="card_flip_time_full">500</integer>
+    <integer name="card_flip_time_half">250</integer>
+    
+<string name="contact_admin_titre">Qui si può contattare l\'amministratore.</string>
+<string name="contact_admin_texte">Due possibilità : o via e-mail o per telefono ! Preferisco il contatto via e-mail in quanto tale direttore è molto occupato. Se davvero si verifica un errore critico, lasciare un messaggio telefonico . In caso contrario, sono trattati come richieste scritte.</string>
+
+    <string name="lorem_ipsum">Lorem ipsum</string>
+    <string name="lorem_ipsum_dolor_sit_amet">Lorem ipsum dolor sit amet</string>
+    <string name="lorem_ipsum_paragraph">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</string>
+</resources>

@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">MyTraveler</string>
     <string name="action_bookmark">Favoris</string>
-    <string name="action_connection_mode">Mode de connection</string>
+    <string name="action_connection_mode">Mode de connexion</string>
     <string name="action_home">Accueil</string>
     <string name="action_settings">Paramètres</string>
     <string name="advanced_search">Paramètres</string>
@@ -13,8 +13,8 @@
     <string name="close_menu">Fermer</string>
     <string name="coordinates">Coordonnées</string>
     <string name="default_headline">Pays de la Loire</string>
-    <string name="email">Email</string>
-    <string name="gallery">Gallerie</string>
+    <string name="email">E-mail</string>
+    <string name="gallery">Galerie</string>
     <string name="guest_account">Compte invité</string>
     <string name="is_no_longer_bookmarked">%s supprimé des favoris</string>
     <string name="is_now_bookmarked">%s ajouté aux favoris</string>
@@ -39,7 +39,7 @@
     <string name="no_result">Pas de résultat</string>
     <string name="now_disconnected_modetext">Mode déconnecté.</string>
     <string name="now_connected_modetext">Mode connecté.</string>
-    <string name="not_implemented">Not yet implemented.</string>
+    <string name="not_implemented">Pas encore implémenté.</string>
     <string name="offline_mode">Hors ligne</string>
     <string name="online_mode">En ligne</string>
     <string name="open_menu">Ouvrir menu</string>
