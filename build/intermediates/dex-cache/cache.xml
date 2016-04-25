@@ -2,60 +2,60 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Susie\AndroidStudioProjects\TourApp2015\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
-        <dex dex="C:\Users\Susie\AndroidStudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\classes-626cec52afc0ca452dec5c474fd27b2d6d8350b5.jar" />
-    </item>
-    <item
-        jar="C:\Users\Susie\.gradle\caches\modules-2\files-2.1\com.j256.ormlite\ormlite-core\4.47\e11abddd1e9c2053a92133fa83f78f7bedb820a9\ormlite-core-4.47.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e11abddd1e9c2053a92133fa83f78f7bedb820a9">
-        <dex dex="C:\Users\Susie\AndroidStudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\ormlite-core-4.47-6497bba941d882d8b0e48c50ce35d2bb7f8b16b4.jar" />
-    </item>
-    <item
-        jar="C:\Users\Susie\.gradle\caches\modules-2\files-2.1\com.j256.ormlite\ormlite-android\4.47\c72f9ed54d8a8bab3fbf56da2b358308a67899a4\ormlite-android-4.47.jar"
+        jar="C:\Users\Aleks&apos;\.gradle\caches\modules-2\files-2.1\com.j256.ormlite\ormlite-android\4.47\c72f9ed54d8a8bab3fbf56da2b358308a67899a4\ormlite-android-4.47.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="c72f9ed54d8a8bab3fbf56da2b358308a67899a4">
-        <dex dex="C:\Users\Susie\AndroidStudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\ormlite-android-4.47-607cfca7ae828a5960f64b3af785cd813066c988.jar" />
+        <dex dex="C:\Users\Aleks&apos;\StudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\ormlite-android-4.47-9a261ba4c75741a1c5ca0a94f75e78a6fd2ad6dc.jar" />
     </item>
     <item
-        jar="C:\Users\Susie\AndroidStudioProjects\TourApp2015\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="C:\Users\Susie\AndroidStudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\classes-d9151290dc2301fcb3375921dad01d0681828678.jar" />
-    </item>
-    <item
-        jar="C:\Users\Susie\AndroidStudioProjects\TourApp2015\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jar="C:\Users\Aleks&apos;\StudioProjects\TourApp2015\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\Susie\AndroidStudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\classes-cee75287698df9be0fe92548189e8bf63e6102fe.jar" />
+        <dex dex="C:\Users\Aleks&apos;\StudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\classes-04a19df4e3e32ee99c00bb7b2d8d5eebef4b7b3a.jar" />
     </item>
     <item
-        jar="C:\Users\Susie\.gradle\caches\modules-2\files-2.1\org.simpleframework\simple-xml\2.7.1\dd91fb744c2ff921407475cb29a1e3fee397d411\simple-xml-2.7.1.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="dd91fb744c2ff921407475cb29a1e3fee397d411">
-        <dex dex="C:\Users\Susie\AndroidStudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\simple-xml-2.7.1-cf85530e8918b4226caf47ecf1ed30184b9fb4db.jar" />
-    </item>
-    <item
-        jar="C:\Users\Susie\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\Susie\AndroidStudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-088d9d79a3bb8d7f043f9b058832eaeb61c35080.jar" />
-    </item>
-    <item
-        jar="C:\Users\Susie\AndroidStudioProjects\TourApp2015\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jar="C:\Users\Aleks&apos;\StudioProjects\TourApp2015\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\Susie\AndroidStudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-608bc4b654bb53cec11c34256e68811bc7aa7ca6.jar" />
+        <dex dex="C:\Users\Aleks&apos;\StudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-32b68b30d9c5499700a7bc5229b17b261c02c469.jar" />
+    </item>
+    <item
+        jar="C:\Users\Aleks&apos;\StudioProjects\TourApp2015\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="C:\Users\Aleks&apos;\StudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\classes-086b07f3a1980956a5ffd41b1f943fcd7b62dae0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Aleks&apos;\.gradle\caches\modules-2\files-2.1\org.simpleframework\simple-xml\2.7.1\dd91fb744c2ff921407475cb29a1e3fee397d411\simple-xml-2.7.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dd91fb744c2ff921407475cb29a1e3fee397d411">
+        <dex dex="C:\Users\Aleks&apos;\StudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\simple-xml-2.7.1-06cacbff8729d4cdb52e6317b73616a56aae6b85.jar" />
+    </item>
+    <item
+        jar="C:\Users\Aleks&apos;\StudioProjects\TourApp2015\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="C:\Users\Aleks&apos;\StudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\classes-b0caab2372f6b269c590d7ab72029590ce41fdc7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Aleks&apos;\.gradle\caches\modules-2\files-2.1\com.j256.ormlite\ormlite-core\4.47\e11abddd1e9c2053a92133fa83f78f7bedb820a9\ormlite-core-4.47.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e11abddd1e9c2053a92133fa83f78f7bedb820a9">
+        <dex dex="C:\Users\Aleks&apos;\StudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\ormlite-core-4.47-ff03d33832fc4e228407d8d24edddb8901ce26de.jar" />
+    </item>
+    <item
+        jar="C:\Users\Aleks&apos;\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="C:\Users\Aleks&apos;\StudioProjects\TourApp2015\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-3ae35113eb4dd1a09649f2003361f47acf4d9c2d.jar" />
     </item>
 
 </items>
