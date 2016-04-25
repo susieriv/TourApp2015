@@ -18,7 +18,7 @@
     <ListView
 		android:id="@+id/touritem_list_view"
 		style="@style/AppBaseTheme.ListView"
-		android:layout_width="match_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:choiceMode="singleChoice" />
 

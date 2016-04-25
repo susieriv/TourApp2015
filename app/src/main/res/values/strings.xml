@@ -65,8 +65,8 @@
     <integer name="card_flip_time_full">500</integer>
     <integer name="card_flip_time_half">250</integer>
 
-    <string name="contact_admin_titre">Here you can contact administrator.</string>
-    <string name="contact_admin_texte">Deux possibilités : soit par email, soit par téléphone ! Privilégiez le contact par e-mail car ledit administrateur est très occupé. Si vraiment un bug critique survient, laissez lui un message téléphonique. Autrement, ne seront traités que les demandes écrites.</string>
+    <string name="contact_admin_titre">Here you can contact our administrator.</string>
+    <string name="contact_admin_texte">Two choices : mail or phone ! Please, prefer the mail choice because our admin is very busy. In case of emergency, let it a message call. Otherwise, only written demandes will be considered.</string>
 
     <string name="lorem_ipsum">Lorem ipsum</string>
     <string name="lorem_ipsum_dolor_sit_amet">Lorem ipsum dolor sit amet</string>
