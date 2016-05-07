@@ -196,7 +196,8 @@ public class SearchFragment extends FragmentBase {
 		
 		// Sets labels
 		List<String> labels = new ArrayList<String>();
-		
+
+		labels.add("Tous");
 		for (GeographicalArea area : this.getGeographicalAreaList()) {
 			labels.add(area.getName());
 		}
@@ -211,7 +212,11 @@ public class SearchFragment extends FragmentBase {
 
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				SearchFragment.this.selectedGeographicalArea = SearchFragment.this.getGeographicalAreaList().get(position);
+				if (position == 0) {
+					SearchFragment.this.selectedGeographicalArea = null;
+				} else {
+					SearchFragment.this.selectedGeographicalArea = SearchFragment.this.getGeographicalAreaList().get(position - 1);
+				}
 			}
 
 			@Override
@@ -230,7 +235,8 @@ public class SearchFragment extends FragmentBase {
 		
 		// Sets labels
 		List<String> labels = new ArrayList<String>();
-		
+
+        labels.add("Tous");
 		for (Theme theme : this.getThemeList()) {
 			labels.add(theme.getName());
 		}
@@ -245,7 +251,11 @@ public class SearchFragment extends FragmentBase {
 
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				SearchFragment.this.selectedTheme = SearchFragment.this.getThemeList().get(position);
+                if (position == 0) {
+                    SearchFragment.this.selectedTheme = null;
+                } else {
+                    SearchFragment.this.selectedTheme = SearchFragment.this.getThemeList().get(position - 1);
+                }
 			}
 
 			@Override

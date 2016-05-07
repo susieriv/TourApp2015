@@ -722,7 +722,7 @@ public class MainActivity extends Activity {
 		TourItemFilter filter = new TourItemFilter(tourItem);
 		GalleryFragment fragment = new GalleryFragment();
 		
-		this.switchToFragment(fragment, filter, Transition.CARD_FLIP);		
+		this.switchToFragment(fragment, filter, Transition.CARD_FLIP);
 	}
 
 	/**

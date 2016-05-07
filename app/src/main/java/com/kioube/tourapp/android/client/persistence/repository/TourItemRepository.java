@@ -143,14 +143,41 @@ public class TourItemRepository extends RepositoryBase<TourItem> {
 		List<TourItem> result = null;
 
 		try {			
-			PreparedQuery<TourItem> query = this.getDao().queryBuilder()
+			if (geographicalArea == null && theme == null)
+			{
+				PreparedQuery<TourItem> query = this.getDao().queryBuilder()			
+				.prepare();
+			
+				result = this.getDao().query(query);
+			}
+			else if (geographicalArea == null)
+			{
+				PreparedQuery<TourItem> query = this.getDao().queryBuilder()
 				.where()
-				.eq(TourItem.GEOGRAPHICAL_AREA_ID_FIELD_NAME, geographicalArea.getId())
-				.and()
 				.eq(TourItem.THEME_ID_FIELD_NAME, theme.getId())				
 				.prepare();
 			
-			result = this.getDao().query(query);
+				result = this.getDao().query(query);
+			}
+			else if (theme == null)
+			{
+				PreparedQuery<TourItem> query = this.getDao().queryBuilder()
+				.where()
+				.eq(TourItem.THEME_ID_FIELD_NAME, theme.getId())				
+				.prepare();
+			
+				result = this.getDao().query(query);
+			} else
+			{
+				PreparedQuery<TourItem> query = this.getDao().queryBuilder()
+					.where()
+					.eq(TourItem.GEOGRAPHICAL_AREA_ID_FIELD_NAME, geographicalArea.getId())
+					.and()
+					.eq(TourItem.THEME_ID_FIELD_NAME, theme.getId())				
+					.prepare();
+				
+				result = this.getDao().query(query);
+			}
 		}
 		catch (SQLException e) {
 			Log.e(LOG_TAG, "Failed to get the persistent TourItem entities matching the GeographicalArea ID = '" + geographicalArea.getId() + "' and Theme ID = '" + theme.getId() + "'.", e);
@@ -163,27 +190,55 @@ public class TourItemRepository extends RepositoryBase<TourItem> {
 		List<TourItem> result = null;
 		String keywordnaked = Normalizer.normalize(keyword, Normalizer.Form.NFD).replaceAll("[\u0300-\u036F]", "");
         try {
-			PreparedQuery<TourItem> query = this.getDao().queryBuilder()
+        	if (geographicalArea == null && theme == null)
+			{
+				PreparedQuery<TourItem> query = this.getDao().queryBuilder()
+					.where()
+					.like(TourItem.NAME_FIELD_NAME, "%" + keyword + "%")
+                	.or()
+                	.like(TourItem.NAME_FIELD_NAME, "%" + keywordnaked + "%")
+					.prepare();
+				result = this.getDao().query(query);
+			} else if (geographicalArea == null)
+			{
+				PreparedQuery<TourItem> query = this.getDao().queryBuilder()
 				.where()
-				.eq(TourItem.GEOGRAPHICAL_AREA_ID_FIELD_NAME, geographicalArea.getId())
 				.eq(TourItem.THEME_ID_FIELD_NAME, theme.getId())
-				.and(2)
+				.and()
 				.like(TourItem.NAME_FIELD_NAME, "%" + keyword + "%")
                 .or()
                 .like(TourItem.NAME_FIELD_NAME, "%" + keywordnaked + "%")
-                .and(2)
+				.and()
+				.eq(TourItem.THEME_ID_FIELD_NAME, theme.getId())
 				.prepare();
-
-            /* PreparedQuery<TourItem> query = this.getDao().queryBuilder()
-                    .where()
-                    .eq(TourItem.GEOGRAPHICAL_AREA_ID_FIELD_NAME, geographicalArea.getId())
-                    .and()
-                    .eq(TourItem.THEME_ID_FIELD_NAME, theme.getId())
-                    .and()
-                    .like(TourItem.NAME_FIELD_NAME, "%" + keyword + "%")
-                    .prepare(); */
-
 			result = this.getDao().query(query);
+			}  else if (theme == null)
+			{
+				PreparedQuery<TourItem> query = this.getDao().queryBuilder()
+				.where()
+				.eq(TourItem.GEOGRAPHICAL_AREA_ID_FIELD_NAME, geographicalArea.getId())
+				.and()
+				.like(TourItem.NAME_FIELD_NAME, "%" + keyword + "%")
+                .or()
+                .like(TourItem.NAME_FIELD_NAME, "%" + keywordnaked + "%")
+				.and()
+				.eq(TourItem.GEOGRAPHICAL_AREA_ID_FIELD_NAME, geographicalArea.getId())
+				.prepare();
+			result = this.getDao().query(query);
+			} else
+			{
+				PreparedQuery<TourItem> query = this.getDao().queryBuilder()
+					.where()
+					.eq(TourItem.GEOGRAPHICAL_AREA_ID_FIELD_NAME, geographicalArea.getId())
+					.and()
+					.eq(TourItem.THEME_ID_FIELD_NAME, theme.getId())
+					.and()
+					.like(TourItem.NAME_FIELD_NAME, "%" + keyword + "%")
+	                .or()
+	                .like(TourItem.NAME_FIELD_NAME, "%" + keywordnaked + "%")
+					.prepare();
+				result = this.getDao().query(query);
+			}
 		}
 		catch (SQLException e) {
 			Log.e(LOG_TAG, "Failed to get the persistent TourItem entities matching the GeographicalArea ID = '" + geographicalArea.getId() + "' and Theme ID = '" + theme.getId() + "'.", e);

@@ -80,6 +80,11 @@ public class TourItemListFilter extends FilterBase {
 	 * @param theme
 	 */
 	public TourItemListFilter(GeographicalArea geographicalArea, Theme theme) {
+		//super();
+		
+		//this.geographicalArea = geographicalArea;
+		//this.theme = theme;
+		//this.keyword = null;
 		this(geographicalArea, theme, null);
 	}
 	
@@ -100,8 +105,7 @@ public class TourItemListFilter extends FilterBase {
 	/**
 	 * Constructs a new TourItemListFilter object.
 	 * 
-	 * @param geographicalArea
-	 * @param theme
+	 * @param bookmarksOnly
 	 */
 	public TourItemListFilter(Boolean bookmarksOnly) {
 		super();
