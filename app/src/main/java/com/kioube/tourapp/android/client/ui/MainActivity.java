@@ -1,8 +1,5 @@
 package com.kioube.tourapp.android.client.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
@@ -52,6 +49,9 @@ import com.kioube.tourapp.android.client.ui.filter.ThemeListFilter;
 import com.kioube.tourapp.android.client.ui.filter.TourItemFilter;
 import com.kioube.tourapp.android.client.ui.filter.TourItemImageFilter;
 import com.kioube.tourapp.android.client.ui.filter.TourItemListFilter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -480,6 +480,32 @@ public class MainActivity extends Activity {
 					}
 				}
 		));
+
+		// ajout d'un menu de contact admin
+		this.navigationItemList.add(new NavigationDrawerItem(
+				this.getResources().getString(R.string.navigation_connexion),
+				R.drawable.ic_contact_admin,
+				new Runnable() {
+					@Override
+					public void run() {
+						// Checks internet connection
+						if (!internetConnectionHelper.isInternetConnectionAvailable()) {
+							MainActivity.this.showNoNetworkAlert();
+						}
+						else {
+							//MainActivity.this.browseToContactAdmin();
+							Intent intent = new Intent(MainActivity.this, FacebookActivity.class);
+							startActivity(intent);
+						}
+					}
+				}
+		));
+
+
+
+
+
+
 		// Adapts it to the navigation list view
 		this.getNavigationListView().setAdapter(
 			new NavigationDrawerItemAdapter(
