@@ -95,6 +95,11 @@ public class MainActivity extends Activity {
 	private TourItem currentTourItem;
 	private SessionManager sessionManager;
 	private InternetConnectionHelper internetConnectionHelper;
+
+	// variables intent de l'activité FacebookActivity
+	final String EXTRA_FIRST_NAME = "";
+	final String EXTRA_LAST_NAME = "";
+
 	
 	/* --- Getters and setters --- */
 
@@ -335,6 +340,18 @@ public class MainActivity extends Activity {
 		);
 		
 		// TODO [2014-05-03, JMEL] Set custom background and foreground colors everywhere
+
+		Intent intent = getIntent();
+
+		// MAJ du first et lastname si l'utilisateur est connecté
+		TextView first_lastname_Display = (TextView) findViewById(R.id.profile_username_text_view);
+		String first_last_name = intent.getStringExtra(EXTRA_FIRST_NAME) + " " + intent.getStringExtra(EXTRA_LAST_NAME);
+		if (intent != null) {
+			first_lastname_Display.setText(first_last_name);
+		}
+
+		// MAJ de la photo de l'avatar
+
 	}
 	
 	/**
