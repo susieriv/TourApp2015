@@ -44,6 +44,6 @@ dependencies {
         exclude module: 'xpp3'
     }
     compile 'com.j256.ormlite:ormlite-android:4.47'
-    compile 'com.facebook.android:facebook-android-sdk:4.0.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.1.0'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }
