@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -28,6 +30,7 @@ public class FacebookActivity extends Activity {
     private CallbackManager callbackManager;
     private ProfileTracker mProfileTracker;
     private Button button;
+    private AccessTokenTracker accessTokenTracker;
 
     // Passage des variables
     Intent returnIntent = null;
@@ -49,6 +52,21 @@ public class FacebookActivity extends Activity {
             }
         });
 
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken,
+                                                       AccessToken currentAccessToken) {
+                if (currentAccessToken == null) {
+                    //user logout
+                    Log.v("facebookActivity - logout", "Token vide - Logout");
+                    returnIntent.putExtra("EXTRA_ACTION_FACEBOOK", "LOGOUT_FACEBOOK");
+                    setResult(Activity.RESULT_OK, returnIntent);
+                    finish();
+                }
+            }
+        };
+
+
         info = (TextView) findViewById(R.id.info);
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("public_profile");
@@ -66,6 +84,7 @@ public class FacebookActivity extends Activity {
                             Log.v("facebook - FirstName", profile2.getFirstName());
                             Log.v("facebook - LastName", profile2.getLastName());
                             mProfileTracker.stopTracking();
+                            returnIntent.putExtra("EXTRA_ACTION_FACEBOOK", "CONNECT_FACEBOOK");
                             returnIntent.putExtra("EXTRA_FIRST_NAME", profile2.getFirstName());
                             returnIntent.putExtra("EXTRA_LAST_NAME",profile2.getLastName());
                             returnIntent.putExtra("EXTRA_ID",profile2.getId());
@@ -94,7 +113,6 @@ public class FacebookActivity extends Activity {
 
             @Override
             public void onError(FacebookException e) {
-
                 info.setText("Login attempt failed.");
                 Log.v("FacebookActivity", e.getCause().toString());
             }
@@ -107,5 +125,9 @@ public class FacebookActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+
+
+
 
 }

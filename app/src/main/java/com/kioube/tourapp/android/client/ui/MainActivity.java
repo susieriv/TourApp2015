@@ -366,51 +366,54 @@ public class MainActivity extends Activity {
 		);
 
 		// TODO [2014-05-03, JMEL] Set custom background and foreground colors everywhere
+		//this.navigationItemList.get(7).setLabel("LOGOUT");
 
 		//Intent intent = getIntent();
 		//Bundle var = this.getIntent().getExtras();
 
 		// MAJ du first et lastname si l'utilisateur est connecte
-		/*TextView first_lastname_Display = (TextView) findViewById(R.id.profile_username_text_view);
+		//TextView first_lastname_Display = (TextView) findViewById(R.id.profile_username_text_view);
 
 		// si l'utilisateur est logge avec son compte facebook
-		Log.d("contenu extra :" ,EXTRA_FIRST_NAME);
+		//Log.d("contenu extra :" ,EXTRA_FIRST_NAME);
+		Log.v("Passage create", EXTRA_FIRST_NAME);
 
 		if (!EXTRA_FIRST_NAME.isEmpty() || !EXTRA_LAST_NAME.isEmpty()) {
+			this.navigationItemList.get(7).setLabel(this.getResources().getString(R.string.navigation_deconnexion));
 			//String first_last_name = "";
 			//first_last_name = var.get(EXTRA_FIRST_NAME).toString() + " " + var.get(EXTRA_LAST_NAME).toString();
 			//if (!first_last_name.isEmpty()) {
-			String pseudo = EXTRA_FIRST_NAME + " " + EXTRA_LAST_NAME;
-			first_lastname_Display.setText(pseudo);
+			//String pseudo = EXTRA_FIRST_NAME + " " + EXTRA_LAST_NAME;
+			//first_lastname_Display.setText(pseudo);
 			//}
 
 			// MAJ de la photo de l'avatar
-			if (!EXTRA_ID.isEmpty()) {
+			/*if (!EXTRA_ID.isEmpty()) {
 				ProfilePictureView profilePictureView;
 				profilePictureView = (ProfilePictureView) findViewById(R.id.profile_avatar_image_view);
 				profilePictureView.setProfileId(EXTRA_ID);
-			}
-		}*/
+			}*/
+		}
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		//this.intent = data;
+
 		if (requestCode == 1) {
-			if (resultCode == Activity.RESULT_OK) {
-				Log.v("Passage requestCode", data.getStringExtra("EXTRA_FIRST_NAME"));
+
+			// Connexion a Facebook
+			if (resultCode == Activity.RESULT_OK && data.getStringExtra("EXTRA_ACTION_FACEBOOK").equals("CONNECT_FACEBOOK")) {
+				Log.v("Passage requestCode=1", "Connexion facebook");
 				EXTRA_FIRST_NAME = data.getStringExtra("EXTRA_FIRST_NAME");
 				EXTRA_LAST_NAME = data.getStringExtra("EXTRA_LAST_NAME");
 				EXTRA_ID = data.getStringExtra("EXTRA_ID");
-
+				this.navigationItemList.get(7).setLabel(this.getResources().getString(R.string.navigation_deconnexion));
 
 				// MAJ du first et lastname si l'utilisateur est connecte
 				TextView first_lastname_Display = (TextView) findViewById(R.id.profile_username_text_view);
 
 				// si l'utilisateur est logge avec son compte facebook
-				Log.d("contenu extra :" ,EXTRA_FIRST_NAME);
-
 				if (!EXTRA_FIRST_NAME.isEmpty() || !EXTRA_LAST_NAME.isEmpty()) {
 
 					String pseudo = EXTRA_FIRST_NAME + " " + EXTRA_LAST_NAME;
@@ -422,16 +425,23 @@ public class MainActivity extends Activity {
 						profilePictureView = (ProfilePictureView) findViewById(R.id.profile_avatar_image_view);
 						profilePictureView.setProfileId(EXTRA_ID);
 					}
-
-					//MAJ du menu
-					this.navigationItemList.get(7).setLabel(this.getResources().getString(R.string.navigation_deconnexion));
-					this.navigationItemList.get(7).setSubLabel(this.getResources().getString(R.string.navigation_deconnexion));
 				}
-
-
 			}
-			if (resultCode == Activity.RESULT_CANCELED) {
-				//Write your code if there's no result
+
+			// Logout Facebook
+			else if(resultCode == Activity.RESULT_OK && data.getStringExtra("EXTRA_ACTION_FACEBOOK").equals("LOGOUT_FACEBOOK")) {
+				Log.v("Passage requestCode=1", "Logout facebook");
+				EXTRA_FIRST_NAME=this.getResources().getString(R.string.guest_account);
+				EXTRA_LAST_NAME="";
+				EXTRA_ID="";
+				// MAJ du first et lastname si l'utilisateur est connecte
+				TextView first_lastname_Display = (TextView) findViewById(R.id.profile_username_text_view);
+				String pseudo = EXTRA_FIRST_NAME;
+				first_lastname_Display.setText(pseudo);
+				this.navigationItemList.get(7).setLabel(this.getResources().getString(R.string.navigation_connexion));
+				ProfilePictureView profilePictureView;
+				profilePictureView = (ProfilePictureView) findViewById(R.id.profile_avatar_image_view);
+				profilePictureView.setProfileId(EXTRA_ID);
 			}
 		}
 	}
@@ -581,7 +591,7 @@ public class MainActivity extends Activity {
 		// ajout d'un menu de contact admin
 		this.navigationItemList.add(new NavigationDrawerItem(
 				this.getResources().getString(R.string.navigation_connexion),
-				R.drawable.ic_contact_admin,
+				R.drawable.ic_logo_facebook,
 				new Runnable() {
 					@Override
 					public void run() {
