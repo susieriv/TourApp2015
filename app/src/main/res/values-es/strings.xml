@@ -61,7 +61,11 @@
     <string name="morning">Mañana</string>
     <string name="afternoon">Tarde</string>
     <string name="night">Noche</string>
-    
+    <string name="boutton_retour">Retorno</string>
+    <string name="navigation_deconnexion">Desconexión</string>
+
+
+
     <integer name="card_flip_time_full">500</integer>
     <integer name="card_flip_time_half">250</integer>
     

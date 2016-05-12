@@ -371,7 +371,7 @@ public class MainActivity extends Activity {
 		//Bundle var = this.getIntent().getExtras();
 
 		// MAJ du first et lastname si l'utilisateur est connecte
-		TextView first_lastname_Display = (TextView) findViewById(R.id.profile_username_text_view);
+		/*TextView first_lastname_Display = (TextView) findViewById(R.id.profile_username_text_view);
 
 		// si l'utilisateur est logge avec son compte facebook
 		Log.d("contenu extra :" ,EXTRA_FIRST_NAME);
@@ -390,7 +390,7 @@ public class MainActivity extends Activity {
 				profilePictureView = (ProfilePictureView) findViewById(R.id.profile_avatar_image_view);
 				profilePictureView.setProfileId(EXTRA_ID);
 			}
-		}
+		}*/
 	}
 
 	@Override
@@ -412,12 +412,9 @@ public class MainActivity extends Activity {
 				Log.d("contenu extra :" ,EXTRA_FIRST_NAME);
 
 				if (!EXTRA_FIRST_NAME.isEmpty() || !EXTRA_LAST_NAME.isEmpty()) {
-					//String first_last_name = "";
-					//first_last_name = var.get(EXTRA_FIRST_NAME).toString() + " " + var.get(EXTRA_LAST_NAME).toString();
-					//if (!first_last_name.isEmpty()) {
+
 					String pseudo = EXTRA_FIRST_NAME + " " + EXTRA_LAST_NAME;
 					first_lastname_Display.setText(pseudo);
-					//}
 
 					// MAJ de la photo de l'avatar
 					if (!EXTRA_ID.isEmpty()) {
@@ -425,6 +422,10 @@ public class MainActivity extends Activity {
 						profilePictureView = (ProfilePictureView) findViewById(R.id.profile_avatar_image_view);
 						profilePictureView.setProfileId(EXTRA_ID);
 					}
+
+					//MAJ du menu
+					this.navigationItemList.get(7).setLabel(this.getResources().getString(R.string.navigation_deconnexion));
+					this.navigationItemList.get(7).setSubLabel(this.getResources().getString(R.string.navigation_deconnexion));
 				}
 
 

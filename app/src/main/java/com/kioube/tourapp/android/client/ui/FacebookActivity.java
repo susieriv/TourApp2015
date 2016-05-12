@@ -30,9 +30,6 @@ public class FacebookActivity extends Activity {
     private Button button;
 
     // Passage des variables
-    /*final String EXTRA_FIRST_NAME = "";
-    final String EXTRA_LAST_NAME = "";
-    final String EXTRA_ID = "";*/
     Intent returnIntent = null;
 
     @Override
@@ -66,16 +63,9 @@ public class FacebookActivity extends Activity {
                         @Override
                         protected void onCurrentProfileChanged(Profile profile, Profile profile2) {
                             // profile2 is the new profile
-                            //Log.v("facebook - profile", profile2.getFirstName());
                             Log.v("facebook - FirstName", profile2.getFirstName());
                             Log.v("facebook - LastName", profile2.getLastName());
                             mProfileTracker.stopTracking();
-                            /*intent.putExtra(EXTRA_FIRST_NAME, profile2.getFirstName());
-                            intent.putExtra(EXTRA_LAST_NAME, profile2.getLastName());
-                            intent.putExtra(EXTRA_ID, profile2.getId());
-                            finish();
-                            startActivity(intent);*/
-
                             returnIntent.putExtra("EXTRA_FIRST_NAME", profile2.getFirstName());
                             returnIntent.putExtra("EXTRA_LAST_NAME",profile2.getLastName());
                             returnIntent.putExtra("EXTRA_ID",profile2.getId());
@@ -88,32 +78,12 @@ public class FacebookActivity extends Activity {
                 } else {
                     Profile profile = Profile.getCurrentProfile();
                     Log.v("facebook - FirstName", profile.getFirstName());
-                    /*intent.putExtra(EXTRA_FIRST_NAME, profile.getFirstName());
-                    Log.v("facebook - LastName", profile.getLastName());
-                    intent.putExtra(EXTRA_LAST_NAME, profile.getLastName());
-                    Log.v("facebook - id", profile.getId());
-                    intent.putExtra(EXTRA_ID, profile.getId());
-                    finish();
-                    startActivity(intent);*/
                     returnIntent.putExtra("EXTRA_FIRST_NAME", profile.getFirstName());
                     returnIntent.putExtra("EXTRA_LAST_NAME",profile.getLastName());
                     returnIntent.putExtra("EXTRA_ID",profile.getId());
                     setResult(Activity.RESULT_OK,returnIntent);
                     finish();
                 }
-
-                /*info.setText(
-                        "User ID: "
-                                + loginResult.getAccessToken().getUserId()
-                                + "\n" +
-                                "Auth Token: "
-                                + loginResult.getAccessToken().getToken()
-                                + loginResult.getAccessToken().getUserId()
-
-                );*/
-
-                //Intent intent = new Intent(FacebookActivity.this, MainActivity.class);
-                //
             }
 
             @Override
@@ -137,6 +107,5 @@ public class FacebookActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
-
 
 }
