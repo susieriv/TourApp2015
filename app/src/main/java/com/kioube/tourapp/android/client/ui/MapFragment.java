@@ -29,7 +29,7 @@ public class MapFragment extends FragmentBase {
 
 	@SuppressWarnings("unused")
 	private static final String LOG_TAG = MapFragment.class.getName();
-	private static final int DEFAULT_ZOOM = 10;
+	private static final int DEFAULT_ZOOM = 17;
 	
 	/* --- Fields --- */
 	

@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -143,10 +144,11 @@ public class TourItemFragment extends FragmentBase {
 		summaryView.setText(this.getTourItem().getSummary());
 		summaryView.setTextColor(this.configurationRepository.getTitleColor());
 		
-		// Sets the description
+		// Sets the description		
 		TextView descriptionView = (TextView) this.getView().findViewById(R.id.description);
 		descriptionView.setText(this.getTourItem().getDescription());
 		descriptionView.setTextColor(this.configurationRepository.getDescriptionColor());
+		descriptionView.setMovementMethod(new ScrollingMovementMethod());
 		
 		return view;
 	}
