@@ -65,6 +65,8 @@
     <string name="navigation_connexion">Connexion</string>
     <string name="boutton_retour">Return</string>
     <string name="navigation_deconnexion">Logout</string>
+    <string name="boutton_share">Share</string>
+
 
     <integer name="card_flip_time_full">500</integer>
     <integer name="card_flip_time_half">250</integer>

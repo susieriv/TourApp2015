@@ -1,8 +1,7 @@
 package com.kioube.tourapp.android.client.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,11 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareButton;
 import com.kioube.tourapp.android.client.R;
 import com.kioube.tourapp.android.client.domain.Coordinate;
 import com.kioube.tourapp.android.client.domain.TourItem;
@@ -29,6 +33,9 @@ import com.kioube.tourapp.android.client.persistence.repository.TourItemImageRep
 import com.kioube.tourapp.android.client.ui.adapter.ActionItemAdapter;
 import com.kioube.tourapp.android.client.ui.domain.ActionItem;
 import com.kioube.tourapp.android.client.ui.filter.TourItemFilter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -53,7 +60,14 @@ public class TourItemFragment extends FragmentBase {
 	private TourItemImageRepository tourItemImageRepository = new TourItemImageRepository(this.getActivity());
 	private ConfigurationRepository configurationRepository = new ConfigurationRepository(this.getActivity());
 	private InternetConnectionHelper internetConnectionHelper;
-	
+	private CallbackManager callbackManager;
+	// share button
+	private ShareButton shareButton;
+	//counter
+	private int counter = 0;
+	//image
+	private Bitmap image;
+
 	/* --- Getters and setters --- */
 	
 	/**
@@ -134,7 +148,7 @@ public class TourItemFragment extends FragmentBase {
 			
 			byte[] imageData = Base64.decode(imageBase64, Base64.NO_WRAP | Base64.NO_PADDING | Base64.URL_SAFE);
 			Bitmap bitmap = BitmapFactory.decodeByteArray(imageData , 0, imageData.length);
-			
+			this.image=bitmap;
 			imageView.setImageBitmap(bitmap);
 		}
 		
@@ -147,10 +161,29 @@ public class TourItemFragment extends FragmentBase {
 		TextView descriptionView = (TextView) this.getView().findViewById(R.id.description);
 		descriptionView.setText(this.getTourItem().getDescription());
 		descriptionView.setTextColor(this.configurationRepository.getDescriptionColor());
-		
+
+
+		callbackManager = CallbackManager.Factory.create();
+		FacebookSdk.sdkInitialize(getActivity());
+		shareButton = (ShareButton) getView().findViewById(R.id.share_btn);
+		shareButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				postPicture();
+			}
+		});
+
 		return view;
 	}
-	
+
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		callbackManager.onActivityResult(requestCode, resultCode, data);
+	}
+
+
 	/**
 	 * Sets the actions grid
 	 */
@@ -159,22 +192,21 @@ public class TourItemFragment extends FragmentBase {
 		
 		// Map action
 		this.actionItemList.add(new ActionItem(
-			this.getResources().getString(R.string.map),
-			R.drawable.ic_map,
-			new Runnable() {				
-				@Override
-				public void run() {
-					// Checks internet connection
-					if (TourItemFragment.this.internetConnectionHelper.isInternetConnectionAvailable()) {
-						TourItemFragment.this.getMainActivity().browseToTourItemMap(
-							TourItemFragment.this.getTourItem()
-						);
-					}
-					else {
-						TourItemFragment.this.getMainActivity().showNoNetworkAlert();
+				this.getResources().getString(R.string.map),
+				R.drawable.ic_map,
+				new Runnable() {
+					@Override
+					public void run() {
+						// Checks internet connection
+						if (TourItemFragment.this.internetConnectionHelper.isInternetConnectionAvailable()) {
+							TourItemFragment.this.getMainActivity().browseToTourItemMap(
+									TourItemFragment.this.getTourItem()
+							);
+						} else {
+							TourItemFragment.this.getMainActivity().showNoNetworkAlert();
+						}
 					}
 				}
-			}
 		));
 		
 		// Gallery action
@@ -193,44 +225,43 @@ public class TourItemFragment extends FragmentBase {
 		
 		// Email action
 		this.actionItemList.add(new ActionItem(
-			this.getResources().getString(R.string.email),
-			R.drawable.ic_mail,
-			new Runnable() {				
-				@Override
-				public void run() {
-					TourItemFragment.this.sendEmail();
+				this.getResources().getString(R.string.email),
+				R.drawable.ic_mail,
+				new Runnable() {
+					@Override
+					public void run() {
+						TourItemFragment.this.sendEmail();
+					}
 				}
-			}
 		));
 		
 		// Www action
 		this.actionItemList.add(new ActionItem(
-			this.getResources().getString(R.string.visit_website),
-			R.drawable.ic_link,
-			new Runnable() {				
-				@Override
-				public void run() {
-					// Checks internet connection
-					if (TourItemFragment.this.internetConnectionHelper.isInternetConnectionAvailable()) {
-						TourItemFragment.this.openWebsite();
-					}
-					else {
-						TourItemFragment.this.getMainActivity().showNoNetworkAlert();
+				this.getResources().getString(R.string.visit_website),
+				R.drawable.ic_link,
+				new Runnable() {
+					@Override
+					public void run() {
+						// Checks internet connection
+						if (TourItemFragment.this.internetConnectionHelper.isInternetConnectionAvailable()) {
+							TourItemFragment.this.openWebsite();
+						} else {
+							TourItemFragment.this.getMainActivity().showNoNetworkAlert();
+						}
 					}
 				}
-			}
 		));
 		
 		// Phone action
 		this.actionItemList.add(new ActionItem(
-			this.getResources().getString(R.string.call),
-			R.drawable.ic_phone,
-			new Runnable() {				
-				@Override
-				public void run() {
-					TourItemFragment.this.callPhone();
+				this.getResources().getString(R.string.call),
+				R.drawable.ic_phone,
+				new Runnable() {
+					@Override
+					public void run() {
+						TourItemFragment.this.callPhone();
+					}
 				}
-			}
 		));
 		
 		// Adapts the ActionItem objects list to the GridView
@@ -243,12 +274,12 @@ public class TourItemFragment extends FragmentBase {
 		
 		// Sets the item clicked event
 		actionGridView.setOnItemClickListener(new OnItemClickListener() {
-			
+
 			@Override
-	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 				TourItemFragment.this.actionItemList.get(position).getRunnable().run();
-	        }
-	    });
+			}
+		});
 	}
 	
 	/**
@@ -277,5 +308,45 @@ public class TourItemFragment extends FragmentBase {
 		String numberPhone = "tel:" + String.format("%010.0f",this.getCoordinate().getPhone());
 		intent.setData(Uri.parse(numberPhone));
 		this.startActivity(intent);
+	}
+
+	public void postPicture() {
+		//check counter
+		if(counter == 0) {
+			//save the screenshot
+			//View rootView = getView().findViewById(android.R.id.content).getRootView();
+			//rootView.setDrawingCacheEnabled(true);
+			// creates immutable clone of image
+			//image = Bitmap.createBitmap(rootView.getDrawingCache());
+			// destroy
+			//rootView.destroyDrawingCache();
+
+
+			//share dialog
+			FacebookSdk.sdkInitialize(getActivity());
+			AlertDialog.Builder shareDialog = new AlertDialog.Builder(getActivity());
+			shareDialog.setTitle("Share on traveler");
+			shareDialog.setMessage("Share image to Facebook?");
+			shareDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					//share the image to Facebook
+					SharePhoto photo = new SharePhoto.Builder().setBitmap(image).build();
+					SharePhotoContent content = new SharePhotoContent.Builder().addPhoto(photo).build();
+					shareButton.setShareContent(content);
+					counter = 1;
+					shareButton.performClick();
+				}
+			});
+			shareDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
+				}
+			});
+			shareDialog.show();
+		}
+		else {
+			counter = 0;
+			shareButton.setShareContent(null);
+		}
 	}
 }

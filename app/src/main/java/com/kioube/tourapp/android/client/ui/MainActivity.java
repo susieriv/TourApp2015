@@ -52,9 +52,6 @@ import com.kioube.tourapp.android.client.ui.filter.TourItemFilter;
 import com.kioube.tourapp.android.client.ui.filter.TourItemImageFilter;
 import com.kioube.tourapp.android.client.ui.filter.TourItemListFilter;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,9 +97,9 @@ public class MainActivity extends Activity {
 	private InternetConnectionHelper internetConnectionHelper;
 
 	// variables intent de l'activite FacebookActivity
-	String EXTRA_FIRST_NAME = "";
-	String EXTRA_LAST_NAME = "";
-	String EXTRA_ID = "";
+	private String EXTRA_FIRST_NAME = "";
+	private String EXTRA_LAST_NAME = "";
+	private String EXTRA_ID = "";
 
 	Intent intent = null;
 
@@ -122,24 +119,6 @@ public class MainActivity extends Activity {
 
 		return this.mapFragment;
 	}
-
-	public static Bitmap getFacebookProfilePicture(String userID) {
-		URL imageURL = null;
-		try {
-			imageURL = new URL("https://graph.facebook.com/" + userID + "/picture?type=large");
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		Bitmap bitmap = null;
-		try {
-			bitmap = BitmapFactory.decodeStream(imageURL.openConnection().getInputStream());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return bitmap;
-	}
-
 
 	/**
 	 * Gets the MainActivity object's viewTitle value
@@ -366,40 +345,13 @@ public class MainActivity extends Activity {
 		);
 
 		// TODO [2014-05-03, JMEL] Set custom background and foreground colors everywhere
-		//this.navigationItemList.get(7).setLabel("LOGOUT");
-
-		//Intent intent = getIntent();
-		//Bundle var = this.getIntent().getExtras();
-
-		// MAJ du first et lastname si l'utilisateur est connecte
-		//TextView first_lastname_Display = (TextView) findViewById(R.id.profile_username_text_view);
-
-		// si l'utilisateur est logge avec son compte facebook
-		//Log.d("contenu extra :" ,EXTRA_FIRST_NAME);
-		Log.v("Passage create", EXTRA_FIRST_NAME);
-
-		if (!EXTRA_FIRST_NAME.isEmpty() || !EXTRA_LAST_NAME.isEmpty()) {
-			this.navigationItemList.get(7).setLabel(this.getResources().getString(R.string.navigation_deconnexion));
-			//String first_last_name = "";
-			//first_last_name = var.get(EXTRA_FIRST_NAME).toString() + " " + var.get(EXTRA_LAST_NAME).toString();
-			//if (!first_last_name.isEmpty()) {
-			//String pseudo = EXTRA_FIRST_NAME + " " + EXTRA_LAST_NAME;
-			//first_lastname_Display.setText(pseudo);
-			//}
-
-			// MAJ de la photo de l'avatar
-			/*if (!EXTRA_ID.isEmpty()) {
-				ProfilePictureView profilePictureView;
-				profilePictureView = (ProfilePictureView) findViewById(R.id.profile_avatar_image_view);
-				profilePictureView.setProfileId(EXTRA_ID);
-			}*/
-		}
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-
+		Log.v("menu", this.navigationItemList.get(7).getLabel());
+		Log.v("PB si non affiche", "menu");
 		if (requestCode == 1) {
 
 			// Connexion a Facebook
@@ -439,6 +391,7 @@ public class MainActivity extends Activity {
 				String pseudo = EXTRA_FIRST_NAME;
 				first_lastname_Display.setText(pseudo);
 				this.navigationItemList.get(7).setLabel(this.getResources().getString(R.string.navigation_connexion));
+
 				ProfilePictureView profilePictureView;
 				profilePictureView = (ProfilePictureView) findViewById(R.id.profile_avatar_image_view);
 				profilePictureView.setProfileId(EXTRA_ID);
@@ -588,7 +541,13 @@ public class MainActivity extends Activity {
 				}
 		));
 
-		// ajout d'un menu de contact admin
+		// ajout d'un menu de connexion
+		Log.v("Passage setupNavigationPanel", "Méthode setupNavigationPanel classe MainActivity");
+		Log.v("Extra First name", EXTRA_FIRST_NAME);
+		Log.v("Extra First name", "--------");
+		Log.v("Extra First name", EXTRA_LAST_NAME);
+
+
 		this.navigationItemList.add(new NavigationDrawerItem(
 				this.getResources().getString(R.string.navigation_connexion),
 				R.drawable.ic_logo_facebook,
@@ -601,12 +560,7 @@ public class MainActivity extends Activity {
 						} else {
 							//MainActivity.this.browseToContactAdmin();
 							intent = new Intent(MainActivity.this, FacebookActivity.class);
-							//startActivity(intent);
-							//startActivityForResult(intent, 1);
-							Log.v("ERROR", "AVANT");
 							startActivityForResult(intent, 1);
-							Log.v("ERROR", "APRES");
-
 						}
 					}
 				}

@@ -31,6 +31,17 @@
         android:scrollbars="vertical"
         android:text="@string/lorem_ipsum_paragraph" />
 
+    <com.facebook.share.widget.LikeView
+        android:id="@+id/likeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.facebook.share.widget.ShareButton
+        android:id="@+id/share_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/boutton_share" />
+
     <GridView
         android:id="@+id/action_grid_view"
         android:layout_width="match_parent"
