@@ -69,7 +69,7 @@ public class FacebookActivity extends Activity {
 
         info = (TextView) findViewById(R.id.info);
         loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions("public_profile");
+        loginButton.setReadPermissions("public_profile, email, publish_actions");
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override

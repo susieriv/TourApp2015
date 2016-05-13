@@ -32,6 +32,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
 import com.facebook.login.widget.ProfilePictureView;
 import com.kioube.tourapp.android.client.R;
 import com.kioube.tourapp.android.client.domain.GeographicalArea;
@@ -345,6 +346,7 @@ public class MainActivity extends Activity {
 		);
 
 		// TODO [2014-05-03, JMEL] Set custom background and foreground colors everywhere
+		FacebookSdk.sdkInitialize(getApplicationContext());
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package com.kioube.tourapp.android.client.ui;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,9 +17,9 @@ import android.widget.TextView;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
-import com.facebook.share.model.SharePhoto;
-import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareButton;
+import com.facebook.share.widget.ShareDialog;
 import com.kioube.tourapp.android.client.R;
 import com.kioube.tourapp.android.client.domain.Coordinate;
 import com.kioube.tourapp.android.client.domain.TourItem;
@@ -63,10 +61,7 @@ public class TourItemFragment extends FragmentBase {
 	private CallbackManager callbackManager;
 	// share button
 	private ShareButton shareButton;
-	//counter
-	private int counter = 0;
-	//image
-	private Bitmap image;
+
 
 	/* --- Getters and setters --- */
 	
@@ -148,7 +143,6 @@ public class TourItemFragment extends FragmentBase {
 			
 			byte[] imageData = Base64.decode(imageBase64, Base64.NO_WRAP | Base64.NO_PADDING | Base64.URL_SAFE);
 			Bitmap bitmap = BitmapFactory.decodeByteArray(imageData , 0, imageData.length);
-			this.image=bitmap;
 			imageView.setImageBitmap(bitmap);
 		}
 		
@@ -311,42 +305,18 @@ public class TourItemFragment extends FragmentBase {
 	}
 
 	public void postPicture() {
-		//check counter
-		if(counter == 0) {
-			//save the screenshot
-			//View rootView = getView().findViewById(android.R.id.content).getRootView();
-			//rootView.setDrawingCacheEnabled(true);
-			// creates immutable clone of image
-			//image = Bitmap.createBitmap(rootView.getDrawingCache());
-			// destroy
-			//rootView.destroyDrawingCache();
 
+		// intialize facebook shareDialog.
+		ShareDialog shareDialog = new ShareDialog(getActivity());
+		if (ShareDialog.canShow(ShareLinkContent.class)) {
 
-			//share dialog
-			FacebookSdk.sdkInitialize(getActivity());
-			AlertDialog.Builder shareDialog = new AlertDialog.Builder(getActivity());
-			shareDialog.setTitle("Share on traveler");
-			shareDialog.setMessage("Share image to Facebook?");
-			shareDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					//share the image to Facebook
-					SharePhoto photo = new SharePhoto.Builder().setBitmap(image).build();
-					SharePhotoContent content = new SharePhotoContent.Builder().addPhoto(photo).build();
-					shareButton.setShareContent(content);
-					counter = 1;
-					shareButton.performClick();
-				}
-			});
-			shareDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.cancel();
-				}
-			});
-			shareDialog.show();
-		}
-		else {
-			counter = 0;
-			shareButton.setShareContent(null);
+			ShareLinkContent linkContent = new ShareLinkContent.Builder()
+					.setContentTitle("MyTraveler")
+					.setImageUrl(Uri.parse("https://pbs.twimg.com/profile_images/630212519395618816/HGzUWTQR.jpg"))
+					.setContentDescription("My traveler is a touristic application.")
+					.setContentUrl(Uri.parse(this.getCoordinate().getWebsite()))
+					.build();
+			shareDialog.show(linkContent);  // Show facebook ShareDialog
 		}
 	}
 }
