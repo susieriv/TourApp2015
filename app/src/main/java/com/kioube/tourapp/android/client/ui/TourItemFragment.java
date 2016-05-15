@@ -1,8 +1,5 @@
 package com.kioube.tourapp.android.client.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,11 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareButton;
+import com.facebook.share.widget.ShareDialog;
 import com.kioube.tourapp.android.client.R;
 import com.kioube.tourapp.android.client.domain.Coordinate;
 import com.kioube.tourapp.android.client.domain.TourItem;
@@ -30,6 +32,9 @@ import com.kioube.tourapp.android.client.persistence.repository.TourItemImageRep
 import com.kioube.tourapp.android.client.ui.adapter.ActionItemAdapter;
 import com.kioube.tourapp.android.client.ui.domain.ActionItem;
 import com.kioube.tourapp.android.client.ui.filter.TourItemFilter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -54,7 +59,11 @@ public class TourItemFragment extends FragmentBase {
 	private TourItemImageRepository tourItemImageRepository = new TourItemImageRepository(this.getActivity());
 	private ConfigurationRepository configurationRepository = new ConfigurationRepository(this.getActivity());
 	private InternetConnectionHelper internetConnectionHelper;
-	
+	private CallbackManager callbackManager;
+	// share button
+	private ShareButton shareButton;
+
+
 	/* --- Getters and setters --- */
 	
 	/**
@@ -150,9 +159,29 @@ public class TourItemFragment extends FragmentBase {
 		descriptionView.setTextColor(this.configurationRepository.getDescriptionColor());
 		descriptionView.setMovementMethod(new ScrollingMovementMethod());
 		
+
+
+		callbackManager = CallbackManager.Factory.create();
+		FacebookSdk.sdkInitialize(getActivity());
+		shareButton = (ShareButton) getView().findViewById(R.id.share_btn);
+		shareButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				postPicture();
+			}
+		});
+
 		return view;
 	}
-	
+
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		callbackManager.onActivityResult(requestCode, resultCode, data);
+	}
+
+
 	/**
 	 * Sets the actions grid
 	 */
@@ -279,5 +308,21 @@ public class TourItemFragment extends FragmentBase {
 		String numberPhone = "tel:" + String.format("%010.0f",this.getCoordinate().getPhone());
 		intent.setData(Uri.parse(numberPhone));
 		this.startActivity(intent);
+	}
+
+	public void postPicture() {
+
+		// intialize facebook shareDialog.
+		ShareDialog shareDialog = new ShareDialog(getActivity());
+		if (ShareDialog.canShow(ShareLinkContent.class)) {
+
+			ShareLinkContent linkContent = new ShareLinkContent.Builder()
+					.setContentTitle("MyTraveler")
+					.setImageUrl(Uri.parse("https://pbs.twimg.com/profile_images/630212519395618816/HGzUWTQR.jpg"))
+					.setContentDescription("My traveler is a touristic application.")
+					.setContentUrl(Uri.parse(this.getCoordinate().getWebsite()))
+					.build();
+			shareDialog.show(linkContent);  // Show facebook ShareDialog
+		}
 	}
 }
